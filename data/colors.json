@@ -1,0 +1,98 @@
+[
+  {
+    "color_id": "C0001",
+    "hex": "#FFFFFF",
+    "rgb": {"r": 255, "g": 255, "b": 255},
+    "color_name_cn": "白色",
+    "color_name_en": "white",
+    "is_active": true
+  },
+  {
+    "color_id": "C0002",
+    "hex": "#000000",
+    "rgb": {"r": 0, "g": 0, "b": 0},
+    "color_name_cn": "黑色",
+    "color_name_en": "black",
+    "is_active": true
+  },
+  {
+    "color_id": "C0003",
+    "hex": "#FFCCBC",
+    "rgb": {"r": 255, "g": 204, "b": 188},
+    "color_name_cn": "浅肤色",
+    "color_name_en": "light peach",
+    "is_active": true
+  },
+  {
+    "color_id": "C0004",
+    "hex": "#EF5350",
+    "rgb": {"r": 239, "g": 83, "b": 80},
+    "color_name_cn": "红色",
+    "color_name_en": "red",
+    "is_active": true
+  },
+  {
+    "color_id": "C0005",
+    "hex": "#FDD835",
+    "rgb": {"r": 253, "g": 216, "b": 53},
+    "color_name_cn": "黄色",
+    "color_name_en": "yellow",
+    "is_active": true
+  },
+  {
+    "color_id": "C0006",
+    "hex": "#43A047",
+    "rgb": {"r": 67, "g": 160, "b": 71},
+    "color_name_cn": "绿色",
+    "color_name_en": "green",
+    "is_active": true
+  },
+  {
+    "color_id": "C0007",
+    "hex": "#42A5F5",
+    "rgb": {"r": 66, "g": 165, "b": 245},
+    "color_name_cn": "蓝色",
+    "color_name_en": "blue",
+    "is_active": true
+  },
+  {
+    "color_id": "C0008",
+    "hex": "#AB47BC",
+    "rgb": {"r": 171, "g": 71, "b": 188},
+    "color_name_cn": "紫色",
+    "color_name_en": "purple",
+    "is_active": true
+  },
+  {
+    "color_id": "C0009",
+    "hex": "#8D6E63",
+    "rgb": {"r": 141, "g": 110, "b": 99},
+    "color_name_cn": "棕色",
+    "color_name_en": "brown",
+    "is_active": true
+  },
+  {
+    "color_id": "C0010",
+    "hex": "#90A4AE",
+    "rgb": {"r": 144, "g": 164, "b": 174},
+    "color_name_cn": "灰色",
+    "color_name_en": "gray",
+    "is_active": true
+  },
+  {
+    "color_id": "C0011",
+    "hex": "#F48FB1",
+    "rgb": {"r": 244, "g": 143, "b": 177},
+    "color_name_cn": "粉色",
+    "color_name_en": "pink",
+    "is_active": true
+  },
+  {
+    "color_id": "C0012",
+    "hex": "#FFB74D",
+    "rgb": {"r": 255, "g": 183, "b": 77},
+    "color_name_cn": "橙色",
+    "color_name_en": "orange",
+    "is_active": true
+  }
+]

@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# User images and generated production outputs are kept local by default.
+inputs/*/
+processed/*/
+outputs/*/
+
+!inputs/.gitkeep
+!processed/.gitkeep
+!outputs/.gitkeep

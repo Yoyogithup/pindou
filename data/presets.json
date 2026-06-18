@@ -1,0 +1,44 @@
+[
+  {
+    "preset_key": "beginner_keychain",
+    "slug": "beginner",
+    "display_name": "新手挂件版",
+    "grid_width": 29,
+    "grid_height": 29,
+    "pixelation_mode": "dominant",
+    "target_color_count": "8-12",
+    "remove_background": true,
+    "style": "clean_blocks",
+    "difficulty": "easy",
+    "estimated_time": "1-2小时",
+    "best_for": ["宠物头像", "游戏头像", "Q版角色", "应援小挂件"]
+  },
+  {
+    "preset_key": "standard_fridge_magnet",
+    "slug": "standard",
+    "display_name": "标准冰箱贴版",
+    "grid_width": 58,
+    "grid_height": 58,
+    "pixelation_mode": "dominant",
+    "target_color_count": "12-18",
+    "remove_background": true,
+    "style": "balanced",
+    "difficulty": "medium",
+    "estimated_time": "3-5小时",
+    "best_for": ["宠物冰箱贴", "情侣头像", "二次元印象小物", "追星应援牌"]
+  },
+  {
+    "preset_key": "detail_portrait",
+    "slug": "detail",
+    "display_name": "细节还原版",
+    "grid_width": 72,
+    "grid_height": 72,
+    "pixelation_mode": "average_then_cleanup",
+    "target_color_count": "18-28",
+    "remove_background": "case_by_case",
+    "style": "detail_first",
+    "difficulty": "hard",
+    "estimated_time": "5小时以上",
+    "best_for": ["复杂照片", "纪念类图片", "用户强调像原图", "愿意接受高难度的用户"]
+  }
+]

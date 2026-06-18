@@ -1,0 +1,14 @@
+[
+  {"color_id": "C0001", "brand": "MARD", "brand_code": "T01", "brand_color_name": "白色", "is_available": true},
+  {"color_id": "C0002", "brand": "MARD", "brand_code": "T02", "brand_color_name": "黑色", "is_available": true},
+  {"color_id": "C0003", "brand": "MARD", "brand_code": "T03", "brand_color_name": "浅肤色", "is_available": true},
+  {"color_id": "C0004", "brand": "MARD", "brand_code": "T04", "brand_color_name": "红色", "is_available": true},
+  {"color_id": "C0005", "brand": "MARD", "brand_code": "T05", "brand_color_name": "黄色", "is_available": true},
+  {"color_id": "C0006", "brand": "MARD", "brand_code": "T06", "brand_color_name": "绿色", "is_available": true},
+  {"color_id": "C0007", "brand": "MARD", "brand_code": "T07", "brand_color_name": "蓝色", "is_available": true},
+  {"color_id": "C0008", "brand": "MARD", "brand_code": "T08", "brand_color_name": "紫色", "is_available": true},
+  {"color_id": "C0009", "brand": "MARD", "brand_code": "T09", "brand_color_name": "棕色", "is_available": true},
+  {"color_id": "C0010", "brand": "MARD", "brand_code": "T10", "brand_color_name": "灰色", "is_available": true},
+  {"color_id": "C0011", "brand": "MARD", "brand_code": "T11", "brand_color_name": "粉色", "is_available": true},
+  {"color_id": "C0012", "brand": "MARD", "brand_code": "T12", "brand_color_name": "橙色", "is_available": true}
+]

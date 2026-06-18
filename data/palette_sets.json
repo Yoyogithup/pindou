@@ -1,0 +1,22 @@
+[
+  {
+    "palette_set_id": "MARD_BASIC_12",
+    "brand": "MARD",
+    "name": "MARD 基础 12 色",
+    "source": "V0 placeholder seed palette. Replace with verified brand data before commercial use.",
+    "color_ids": [
+      "C0001",
+      "C0002",
+      "C0003",
+      "C0004",
+      "C0005",
+      "C0006",
+      "C0007",
+      "C0008",
+      "C0009",
+      "C0010",
+      "C0011",
+      "C0012"
+    ]
+  }
+]
