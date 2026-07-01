@@ -110,16 +110,23 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def main() -> None:
-    args = parse_args()
-    submission_dir = args.output_dir / args.submission_id
+def run_package_delivery(
+    submission_id: str,
+    selected_candidate: str,
+    theme: str = "待补充",
+    target_object: str = "冰箱贴 / 挂件 / 摆件",
+    output_dir: Path = ROOT / "outputs",
+    inputs_dir: Path = ROOT / "inputs",
+    processed_dir: Path = ROOT / "processed",
+) -> dict[str, Any]:
+    submission_dir = output_dir / submission_id
     submission_dir.mkdir(parents=True, exist_ok=True)
 
-    _, candidate = find_candidate(args.output_dir, args.submission_id, args.selected_candidate)
+    _, candidate = find_candidate(output_dir, submission_id, selected_candidate)
     preset = candidate["preset"]
 
-    original_copied = copy_if_exists(args.inputs_dir / args.submission_id / "original.jpg", submission_dir / "00_original.jpg")
-    processed_copied = copy_if_exists(args.processed_dir / args.submission_id / "processed.png", submission_dir / "01_processed.png")
+    original_copied = copy_if_exists(inputs_dir / submission_id / "original.jpg", submission_dir / "00_original.jpg")
+    processed_copied = copy_if_exists(processed_dir / submission_id / "processed.png", submission_dir / "01_processed.png")
 
     preview_name = candidate["expected_outputs"]["preview"]
     pattern_name = candidate["expected_outputs"]["pattern"]
@@ -130,7 +137,7 @@ def main() -> None:
     color_list_exists = (submission_dir / color_list_name).exists()
 
     if preview_exists:
-        shutil.copy2(submission_dir / preview_name, submission_dir / f"0{2 if args.selected_candidate == 'beginner' else 3}_preview_{args.selected_candidate}.png")
+        shutil.copy2(submission_dir / preview_name, submission_dir / f"0{2 if selected_candidate == 'beginner' else 3}_preview_{selected_candidate}.png")
     if pattern_exists:
         shutil.copy2(submission_dir / pattern_name, submission_dir / "final_pattern.png")
     if color_list_exists:
@@ -139,10 +146,10 @@ def main() -> None:
         write_placeholder_color_list(submission_dir / "color_list.csv", candidate["brand"])
 
     metadata = {
-        "submission_id": args.submission_id,
+        "submission_id": submission_id,
         "created_at": datetime.now().isoformat(timespec="seconds"),
-        "theme": args.theme,
-        "target_object": args.target_object,
+        "theme": theme,
+        "target_object": target_object,
         "selected_preset": preset["preset_key"],
         "grid_width": preset["grid_width"],
         "grid_height": preset["grid_height"],
@@ -168,7 +175,21 @@ def main() -> None:
         file.write("\n")
 
     write_delivery_card(submission_dir / "delivery_card.png", metadata)
-    print(f"Delivery package written to {submission_dir}")
+    return metadata
+
+
+def main() -> None:
+    args = parse_args()
+    metadata = run_package_delivery(
+        args.submission_id,
+        args.selected_candidate,
+        args.theme,
+        args.target_object,
+        args.output_dir,
+        args.inputs_dir,
+        args.processed_dir,
+    )
+    print(f"Delivery package written to {metadata['files']['delivery_card']}")
 
 
 if __name__ == "__main__":

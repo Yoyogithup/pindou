@@ -65,17 +65,21 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def main() -> None:
-    args = parse_args()
-    if not args.image.exists():
-        raise FileNotFoundError(f"Processed image not found: {args.image}")
+def run_generate_candidates(
+    submission_id: str,
+    image: Path,
+    brand: str = "MARD",
+    output_dir: Path = ROOT / "outputs",
+) -> Path:
+    if not image.exists():
+        raise FileNotFoundError(f"Processed image not found: {image}")
 
-    submission_dir = args.output_dir / args.submission_id
+    submission_dir = output_dir / submission_id
     submission_dir.mkdir(parents=True, exist_ok=True)
 
     manifest = []
     for preset in load_presets():
-        candidate = build_candidate(args.submission_id, args.image, args.brand, preset)
+        candidate = build_candidate(submission_id, image, brand, preset)
         candidate_path = submission_dir / f"candidate_{preset['slug']}_metadata.json"
         with candidate_path.open("w", encoding="utf-8") as file:
             json.dump(candidate, file, ensure_ascii=False, indent=2)
@@ -86,7 +90,7 @@ def main() -> None:
     with manifest_path.open("w", encoding="utf-8") as file:
         json.dump(
             {
-                "submission_id": args.submission_id,
+                "submission_id": submission_id,
                 "created_at": datetime.now().isoformat(timespec="seconds"),
                 "candidate_files": manifest
             },
@@ -96,6 +100,14 @@ def main() -> None:
         )
         file.write("\n")
 
+    return submission_dir
+
+
+def main() -> None:
+    args = parse_args()
+    submission_dir = run_generate_candidates(
+        args.submission_id, args.image, args.brand, args.output_dir
+    )
     print(f"Candidate task files written to {submission_dir}")
 
 

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}{{ submission.submission_id }} - 候选确认{% endblock %}
+
+{% block content %}
+<div class="review-header">
+    <h1>请选择你喜欢的拼豆图纸版本</h1>
+    <p>案例编号：{{ submission.submission_id }} | 主题：{{ submission.theme }} | 目标成品：{{ submission.target_object }}</p>
+</div>
+
+{% if request.query_params.submitted %}
+<div class="alert alert-success">
+    反馈已提交，我们会尽快根据你的选择生成交付包。
+</div>
+{% endif %}
+
+<form action="/review/{{ submission.submission_id }}" method="post">
+    <div class="candidate-grid review-grid">
+        {% for c in candidates %}
+        <div class="candidate-card">
+            <label class="candidate-radio">
+                <input type="radio" name="selected_candidate" value="{{ c.slug }}" required>
+                <span class="radio-label">选择这个版本</span>
+            </label>
+            <h3>{{ c.preset.display_name }}</h3>
+            <div class="candidate-meta">
+                <span class="badge">{{ c.preset.grid_width }}×{{ c.preset.grid_height }}</span>
+                <span class="badge">{{ c.preset.difficulty }}</span>
+                <span class="badge">{{ c.preset.estimated_time }}</span>
+            </div>
+            <p><strong>目标颜色数：</strong>{{ c.preset.target_color_count }}</p>
+            <p><strong>适合：</strong>{{ c.preset.best_for | join('、') }}</p>
+            {% if c.preview_url %}
+            <div class="preview">
+                <img src="{{ c.preview_url }}" alt="{{ c.preset.display_name }} 预览">
+            </div>
+            {% else %}
+            <p class="empty">预览图尚未生成</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <section class="card feedback-form">
+        <h2>你的反馈</h2>
+        <div class="form-grid">
+            <div class="field">
+                <label for="user_satisfaction">整体满意度</label>
+                <select name="user_satisfaction" id="user_satisfaction">
+                    <option value="">请选择</option>
+                    <option value="5">非常满意</option>
+                    <option value="4">满意</option>
+                    <option value="3">一般</option>
+                    <option value="2">不太满意</option>
+                    <option value="1">不满意</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="looks_like_original">是否像原图</label>
+                <select name="looks_like_original" id="looks_like_original">
+                    <option value="">请选择</option>
+                    <option value="yes">像</option>
+                    <option value="somewhat">有点像</option>
+                    <option value="no">不太像</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="will_make_it">是否会制作</label>
+                <select name="will_make_it" id="will_make_it">
+                    <option value="">请选择</option>
+                    <option value="yes">一定会</option>
+                    <option value="maybe">考虑中</option>
+                    <option value="no">不会</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="willing_to_pay">是否愿意付费</label>
+                <select name="willing_to_pay" id="willing_to_pay">
+                    <option value="">请选择</option>
+                    <option value="yes">愿意</option>
+                    <option value="maybe">看价格</option>
+                    <option value="no">不愿意</option>
+                </select>
+            </div>
+            <div class="field full-width">
+                <label for="main_problem">主要问题</label>
+                <input type="text" name="main_problem" id="main_problem" placeholder="颜色、尺寸、不像原图等">
+            </div>
+            <div class="field full-width">
+                <label for="requested_revision">修改建议</label>
+                <input type="text" name="requested_revision" id="requested_revision" placeholder="希望调整的地方">
+            </div>
+            <div class="field full-width">
+                <label for="notes">其他备注</label>
+                <input type="text" name="notes" id="notes">
+            </div>
+            <div class="field full-width">
+                <button type="submit" class="btn btn-primary btn-large">提交选择</button>
+            </div>
+        </div>
+    </section>
+</form>
+{% endblock %}
