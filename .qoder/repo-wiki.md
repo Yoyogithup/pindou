@@ -1,5 +1,7 @@
 # 拼豆图纸 MVP V0 - Repo Wiki
 
+> 2026-07-03 工作法更新：本文件是早期项目说明，不再承担当前状态。Qoder 开始工作时请优先读取 `docs/development_status.md`、`docs/development_schedule.md`、相关 `docs/decisions/` 和 `docs/agent-collaboration.md`。功能开发使用 `.qoder/skills/pindou-develop/`；真机问题使用 `.qoder/skills/pindou-device-debug/`。完整交接见 `docs/qoder-handoff-2026-07-03.md`。
+
 ## 项目概述
 
 这是一个用于验证“用户发图 → 内部处理 → 输出可制作拼豆图纸包”的轻量仓库。当前阶段不是完整小程序或商业化平台，而是低成本、半自动的内部生产链路，用于 MVP 调研验证。

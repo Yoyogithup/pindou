@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pindou Device Debug"
+  short_description: "整理、修复、审查、部署并复测拼豆项目的真实设备兼容问题"
+  default_prompt: "Use $pindou-device-debug to triage this real-device issue, implement a safe fix, and track device retesting."
