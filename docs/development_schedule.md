@@ -19,7 +19,7 @@
 | ID | 任务 | 状态 | 当前负责人 | 审查者 | 下一步 |
 |---|---|---|---|---|---|
 | DEV-001 | 建立 pindou 开发工作法与权威文档 | 已完成 | Codex | Qoder | Qoder 按交接文档检查共享文档和技能入口 |
-| DEV-002 | 建立 GitHub 分支、PR、CI 与 Release 基线 | 已阻断 | Codex | Qoder | 本地提交 `dd4cea0` 已完成；重新认证 GitHub 后推送 Draft PR |
+| DEV-002 | 建立 GitHub 分支、PR、CI 与 Release 基线 | 已阻断 | Codex | Qoder | 本地提交已完成；网络恢复并重新认证 GitHub 后推送 Draft PR |
 | TEST-F-001 | 执行阶段 F 四类真机验收矩阵 | 进行中 | 用户 | Codex / Qoder | 继续记录真实设备结果并登记发现的 Bug |
 | DATA-001 | 建立生产级 MARD 色板 | 已阻断 | 待定 | Codex / Qoder | 确认独立、可追溯的数据来源 |
 
