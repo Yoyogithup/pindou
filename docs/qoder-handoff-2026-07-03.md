@@ -39,6 +39,7 @@
 ## 本次版本基线
 
 - 工作分支：`codex/establish-development-workflow`
+- 本地基线提交：`dd4cea0`（阶段 F 自研代码、测试、工作法、技能与 CI）。
 - 目标：把当前阶段 E 自研代码、测试、文档、工作法与 CI 纳入 GitHub Draft PR。
 - 排除：用户数据、`outputs/`、构建产物、第三方嵌套仓库源码和密钥。
 - 当前远端发布阻断：GitHub CLI 认证已失效，需要用户重新登录后才能 push 和创建 Draft PR。
