@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pindou Develop"
+  short_description: "管理拼豆项目开发、计划、测试、审查、状态同步和版本交接"
+  default_prompt: "Use $pindou-develop to complete the requested pindou project work and keep its status and schedule synchronized."

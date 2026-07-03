@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #fff7e8;
+  --cream-light: #fffdf7;
+  --mint: #7cb7a5;
+  --mint-dark: #6aa894;
+  --pink: #f6a6b2;
+  --blue: #afc8e8;
+  --brown: #3b312a;
+  --muted: #8a7b70;
+  --border: #eadbc8;
+  --white: #ffffff;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-cream-light: var(--cream-light);
+  --color-mint: var(--mint);
+  --color-mint-dark: var(--mint-dark);
+  --color-pink: var(--pink);
+  --color-blue: var(--blue);
+  --color-brown: var(--brown);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+    sans-serif;
+}
+
+body {
+  background: var(--cream);
+  color: var(--brown);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei",
+    sans-serif;
+}

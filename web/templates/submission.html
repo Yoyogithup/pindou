@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}{{ submission.submission_id }} - 案例详情{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>案例详情：{{ submission.submission_id }}</h1>
+    <a href="/submissions/" class="btn btn-sm">返回列表</a>
+</div>
+
+<section class="card">
+    <h2>基本信息</h2>
+    <div class="info-grid">
+        <div><strong>主题：</strong>{{ submission.theme }}</div>
+        <div><strong>目标成品：</strong>{{ submission.target_object }}</div>
+        <div><strong>品牌：</strong>{{ submission.preferred_brand }}</div>
+        <div><strong>来源：</strong>{{ submission.source_channel }}</div>
+        {% if submission.notes %}
+        <div class="full-width"><strong>备注：</strong>{{ submission.notes }}</div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="card">
+    <h2>图片</h2>
+    <div class="image-grid">
+        <div class="image-box">
+            <h3>原图</h3>
+            {% if status.has_original %}
+            <img src="/inputs/{{ submission.submission_id }}/original.jpg" alt="原图">
+            {% else %}
+            <p class="empty">未上传原图</p>
+            {% endif %}
+        </div>
+        <div class="image-box">
+            <h3>预处理后</h3>
+            {% if status.has_processed %}
+            <img src="/processed/{{ submission.submission_id }}/processed.png" alt="预处理后">
+            {% else %}
+            <p class="empty">尚未预处理</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="card">
+    <h2>预处理参数</h2>
+    <form action="/preprocess/{{ submission.submission_id }}" method="post" class="form-inline">
+        <div class="field">
+            <label for="size">尺寸</label>
+            <input type="number" name="size" id="size" value="1024" min="256" max="2048" step="64">
+        </div>
+        <div class="field">
+            <label for="brightness">亮度</label>
+            <input type="number" name="brightness" id="brightness" value="1.04" min="0.5" max="2.0" step="0.01">
+        </div>
+        <div class="field">
+            <label for="contrast">对比度</label>
+            <input type="number" name="contrast" id="contrast" value="1.08" min="0.5" max="2.0" step="0.01">
+        </div>
+        <div class="field">
+            <button type="submit" class="btn btn-primary" {% if not status.has_original %}disabled{% endif %}>
+                运行预处理
+            </button>
+        </div>
+    </form>
+</section>
+
+<section class="card">
+    <h2>候选版本</h2>
+    <form action="/candidates/{{ submission.submission_id }}" method="post" class="form-inline">
+        <p>基于当前预处理图生成三个候选版本的任务文件。</p>
+        <button type="submit" class="btn btn-primary" {% if not status.has_processed %}disabled{% endif %}>
+            生成候选
+        </button>
+    </form>
+
+    <div class="candidate-grid">
+        {% for c in candidates %}
+        <div class="candidate-card">
+            <h3>{{ c.preset.display_name }}</h3>
+            <div class="candidate-meta">
+                <span class="badge">{{ c.preset.grid_width }}×{{ c.preset.grid_height }}</span>
+                <span class="badge">{{ c.preset.difficulty }}</span>
+                <span class="badge">{{ c.preset.estimated_time }}</span>
+            </div>
+            <p><strong>目标颜色数：</strong>{{ c.preset.target_color_count }}</p>
+            <p><strong>适合：</strong>{{ c.preset.best_for | join('、') }}</p>
+            {% if c.preview_url %}
+            <div class="preview">
+                <img src="{{ c.preview_url }}" alt="{{ c.preset.display_name }} 预览">
+            </div>
+            {% else %}
+            <p class="empty">尚未导出预览图</p>
+            {% endif %}
+            {% if c.metadata %}
+            <form action="/delivery/{{ submission.submission_id }}" method="post" class="delivery-form">
+                <input type="hidden" name="selected_candidate" value="{{ c.slug }}">
+                <button type="submit" class="btn btn-success">选用此版本生成交付包</button>
+            </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% if delivery %}
+<section class="card">
+    <h2>交付包</h2>
+    <div class="info-grid">
+        <div><strong>已选版本：</strong>{{ delivery.selected_preset }}</div>
+        <div><strong>尺寸：</strong>{{ delivery.grid_width }}×{{ delivery.grid_height }}</div>
+        <div><strong>总豆数：</strong>{{ delivery.total_beads }}</div>
+        <div><strong>颜色数：</strong>{{ delivery.color_count }}</div>
+        <div><strong>难度：</strong>{{ delivery.difficulty }}</div>
+        <div><strong>预计耗时：</strong>{{ delivery.estimated_time }}</div>
+    </div>
+    <div class="file-list">
+        {% for key, filename in delivery.files.items() %}
+        {% if filename %}
+        <a href="/outputs/{{ submission.submission_id }}/{{ filename }}" class="btn btn-sm btn-secondary" target="_blank">
+            查看 {{ key }}
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<section class="card">
+    <h2>客户确认链接</h2>
+    <p>将以下链接发给客户，客户可查看候选效果并提交反馈：</p>
+    <div class="copy-box">
+        <code id="review-link">{{ request.base_url }}review/{{ submission.submission_id }}</code>
+        <button class="btn btn-sm" onclick="copyReviewLink()">复制</button>
+    </div>
+</section>
+{% endblock %}

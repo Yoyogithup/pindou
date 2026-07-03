@@ -56,10 +56,21 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def run_preprocess_image(
+    input_path: Path,
+    output_path: Path,
+    size: int = 1024,
+    brightness: float = 1.04,
+    contrast: float = 1.08,
+) -> Path:
+    preprocess_image(input_path, output_path, size, brightness, contrast)
+    return output_path
+
+
 def main() -> None:
     args = parse_args()
-    preprocess_image(args.input, args.output, args.size, args.brightness, args.contrast)
-    print(f"Processed image written to {args.output}")
+    output_path = run_preprocess_image(args.input, args.output, args.size, args.brightness, args.contrast)
+    print(f"Processed image written to {output_path}")
 
 
 if __name__ == "__main__":

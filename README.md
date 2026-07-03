@@ -4,6 +4,8 @@
 
 当前阶段不是完整小程序或商业化平台，而是低成本、半自动的内部生产链路。重点是让每个案例都有清晰的输入、处理记录、候选版本、交付包和用户反馈。
 
+> 当前事实请从 [`docs/development_status.md`](docs/development_status.md) 开始；任务、决策和 Agent 协作分别见 [`docs/development_schedule.md`](docs/development_schedule.md)、[`docs/decisions/`](docs/decisions/) 和 [`docs/agent-collaboration.md`](docs/agent-collaboration.md)。`docs/handoff.md` 与阶段 review handoff 作为历史规划和审查证据保留。
+
 ## 当前能力
 
 - 标准化生产目录结构
@@ -77,7 +79,7 @@ V0 推荐参考并内部部署：
 https://github.com/Zippland/perler-beads
 ```
 
-该参考项目采用 AGPL-3.0 协议。本仓库当前只保留流程、schema 和自研辅助脚本，不直接复制参考项目代码。若后续基于参考项目做衍生开发，需要重新评估协议、版权声明和开源义务。
+该参考项目采用 AGPL-3.0。本项目已决定采用洁净重写：只把它作为功能调研材料，不复制其代码、文件结构、测试或色板 JSON，也不建立运行时依赖。MARD 色板需要从独立、可追溯的来源重新建立。
 
 ## V0 工作流
 

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}案例列表 - 拼豆图纸 MVP{% endblock %}
+
+{% block content %}
+<h1>案例列表</h1>
+
+{% if error %}
+<div class="alert alert-error">{{ error }}</div>
+{% endif %}
+
+<section class="card">
+    <h2>新增提交</h2>
+    <form action="/submissions/" method="post" enctype="multipart/form-data" class="form-grid">
+        <div class="field">
+            <label for="theme">主题</label>
+            <select name="theme" id="theme" required>
+                <option value="pet">宠物</option>
+                <option value="character">角色</option>
+                <option value="photo">照片</option>
+                <option value="game_avatar">游戏头像</option>
+                <option value="idol">追星应援</option>
+                <option value="other">其他</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="target_object">目标成品</label>
+            <select name="target_object" id="target_object" required>
+                <option value="fridge_magnet">冰箱贴</option>
+                <option value="keychain">挂件</option>
+                <option value="ornament">摆件</option>
+                <option value="other">其他</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="preferred_brand">品牌</label>
+            <select name="preferred_brand" id="preferred_brand">
+                <option value="MARD">MARD</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="source_channel">来源渠道</label>
+            <select name="source_channel" id="source_channel">
+                <option value="xiaohongshu">小红书</option>
+                <option value="wechat">微信</option>
+                <option value="friend">朋友推荐</option>
+                <option value="other">其他</option>
+            </select>
+        </div>
+        <div class="field full-width">
+            <label for="image">原图</label>
+            <input type="file" name="image" id="image" accept="image/*" required>
+        </div>
+        <div class="field full-width">
+            <label for="notes">备注</label>
+            <input type="text" name="notes" id="notes" placeholder="用户特殊需求">
+        </div>
+        <div class="field full-width">
+            <button type="submit" class="btn btn-primary">创建案例</button>
+        </div>
+    </form>
+</section>
+
+<section class="card">
+    <h2>已有案例</h2>
+    {% if submissions %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>主题</th>
+                <th>目标成品</th>
+                <th>品牌</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in submissions %}
+            <tr>
+                <td>{{ s.submission_id }}</td>
+                <td>{{ s.theme }}</td>
+                <td>{{ s.target_object }}</td>
+                <td>{{ s.preferred_brand }}</td>
+                <td>
+                    {% if s._status.has_original %}<span class="badge">原图</span>{% endif %}
+                    {% if s._status.has_processed %}<span class="badge">预处理</span>{% endif %}
+                    {% if s._status.has_candidates %}<span class="badge">候选</span>{% endif %}
+                    {% if s._status.has_delivery %}<span class="badge badge-success">交付</span>{% endif %}
+                </td>
+                <td>
+                    <a href="/submissions/{{ s.submission_id }}" class="btn btn-sm">管理</a>
+                    <a href="/review/{{ s.submission_id }}" class="btn btn-sm btn-secondary" target="_blank">确认页</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="empty">暂无案例，请新增提交。</p>
+    {% endif %}
+</section>
+{% endblock %}
