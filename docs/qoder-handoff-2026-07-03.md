@@ -42,4 +42,4 @@
 - 本地基线提交：`dd4cea0`（阶段 F 自研代码、测试、工作法、技能与 CI）。
 - 目标：把当前阶段 E 自研代码、测试、文档、工作法与 CI 纳入 GitHub Draft PR。
 - 排除：用户数据、`outputs/`、构建产物、第三方嵌套仓库源码和密钥。
-- 当前远端发布阻断：GitHub CLI 认证已失效，网页登录与直接 push 又因 GitHub 443 连接超时失败。网络恢复并重新登录后再 push 和创建 Draft PR。
+- 远端基线已推送，Draft PR：<https://github.com/Yoyogithup/pindou/pull/1>。请 Qoder 按本交接与 `docs/agent-collaboration.md` 做独立审查；CI 和审查通过前不要合并到 `main`。

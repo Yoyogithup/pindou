@@ -44,12 +44,11 @@
 1. 四类真机验收矩阵尚未完成：iPhone Safari、iPhone 微信、Android Chrome、Android 微信。
 2. Safari/微信中的真实 EXIF、Blob 长按保存、打开原图、系统分享和手势仍需真机证据。
 3. 生产级 MARD 色号—HEX 数据及来源记录尚未补齐，阻止正式色号版本发布。
-4. 本地首个阶段 F 可恢复基线已提交为 `dd4cea0`；`main` 远端仍停留在初始工作流提交，尚未收到该基线。
-5. GitHub CLI 认证于 2026-07-03 检查时已失效；网页登录和直接 push 随后均因无法连接 GitHub 443 端口而超时。远端推送和 Draft PR 需在网络恢复后完成。
+4. 首个阶段 F 可恢复基线已推送到 `codex/establish-development-workflow`，Draft PR 为 <https://github.com/Yoyogithup/pindou/pull/1>；在 CI 和 Qoder 审查通过前不合并到 `main`。
 
 ## 下一步
 
-1. GitHub 重新认证后推送 `codex/establish-development-workflow` 并创建版本基线 Draft PR。
+1. 等待 Draft PR #1 的 GitHub CI 与 Qoder 独立审查；修复阻断项后再决定是否合并。
 2. 继续按 `docs/phase-f-device-testing.md` 执行四类真机验收。
 3. 真机问题使用 `pindou-device-debug` 工作流登记、修复和原设备复测。
 4. 真机通过后发布阶段 F 稳定 Release。
